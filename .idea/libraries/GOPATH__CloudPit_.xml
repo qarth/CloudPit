@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;CloudPit&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../hello" />
+      <root url="file://$PROJECT_DIR$/../../../siteadmin" />
+      <root url="file://$PROJECT_DIR$/../../../ktkr.us" />
+      <root url="file://$PROJECT_DIR$/../../../h" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../hello" />
+      <root url="file://$PROJECT_DIR$/../../../siteadmin" />
+      <root url="file://$PROJECT_DIR$/../../../ktkr.us" />
+      <root url="file://$PROJECT_DIR$/../../../h" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>

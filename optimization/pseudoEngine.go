@@ -1,10 +1,11 @@
 package optimization
 
 import (
-	"fmt"
 	"github.com/clbanning/pseudo"
-	"io"
 	"math"
+	"bytes"
+	"log"
+	"fmt"
 )
 
 type (
@@ -102,7 +103,7 @@ func (p *PseudoSolver) sendInput(data []float64, pre *Precedence) {
 		}
 		a = append(a, pseudo.A{From: uint(from_i), To: uint(to_i), Capacity: int(capacity)})
 
-		fmt.Print(a)
+		//fmt.Print(a)
 		//fmt.Fprintf(st, "a %v %v %v\n", from_i, to_i, capacity)
 		//fmt.Printf("a %v %v %v\n", from_i, to_i, capacity)
 	}
@@ -113,15 +114,22 @@ func (p *PseudoSolver) sendInput(data []float64, pre *Precedence) {
 		if ind := pre.keys[i]; ind != MISSING {
 			for _, off := range pre.defs[ind] {
 				a = append(a, pseudo.A{From: uint(from_i), To: uint(to_i + off), Capacity: math.MaxInt32})
-				fmt.Print(a)
+				//fmt.Print(a)
 				//fmt.Print("a %v %v %v\n", from_i, from_i+off, uint32(math.MaxUint32))
 			}
 		}
 	}
 	//var header string
-	var w io.Writer
-	header := H
+	//var w io.Writer
+	//header := H
 
 	s := pseudo.NewSession(pseudo.Context{LowestLabel: false, FifoBuckets: true, DisplayCut: true})
-	(*pseudo.Session).RunNAWriter(s, uint(numNodes), uint(numArcs), n, a, w, header)
+	//(*pseudo.Session).RunNAWriter(s, uint(numNodes), uint(numArcs), n, a, w, header)
+	var err error
+	var buf bytes.Buffer
+	if err = s.RunNAWriter(uint(numNodes), uint(numArcs), n, a, &buf); err != nil {
+		log.Fatal(err)
+	}
+	result := string(buf.Bytes())
+	fmt.Print(result)
 }
