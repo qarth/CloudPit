@@ -2,10 +2,9 @@ package optimization
 
 import (
 	"github.com/clbanning/pseudo"
-	"math"
-	"bytes"
+	"io"
 	"log"
-	"fmt"
+	"math"
 )
 
 type (
@@ -120,16 +119,17 @@ func (p *PseudoSolver) sendInput(data []float64, pre *Precedence) {
 		}
 	}
 	//var header string
-	//var w io.Writer
-	//header := H
+	var w io.Writer
+	header := H
 
-	s := pseudo.NewSession(pseudo.Context{LowestLabel: false, FifoBuckets: true, DisplayCut: true})
+	//s := pseudo.NewSession(pseudo.Context{LowestLabel: false, FifoBuckets: true, DisplayCut: true})
+	s := pseudo.NewSession(pseudo.Context{})
 	//(*pseudo.Session).RunNAWriter(s, uint(numNodes), uint(numArcs), n, a, w, header)
 	var err error
-	var buf bytes.Buffer
-	if err = s.RunNAWriter(uint(numNodes), uint(numArcs), n, a, &buf); err != nil {
+	//var buf bytes.Buffer
+	if err = s.RunNAWriter(uint(numNodes), uint(numArcs), n, a, w, header); err != nil {
 		log.Fatal(err)
 	}
-	result := string(buf.Bytes())
-	fmt.Print(result)
+	//result := string(buf.Bytes())
+	//fmt.Print(result)
 }
